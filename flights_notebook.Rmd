@@ -57,7 +57,6 @@ f <- DelayedFlights
 f %>%
   filter(Month>=6, Month<=8, ArrDelay>0) %>%
   select(Month,DayofMonth,ArrDelay) %>%
-  group_by(Month,DayofMonth) %>%
   summarise(MeanDelay=mean(ArrDelay,na.rm=TRUE))
 rm(f)
 
