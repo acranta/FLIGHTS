@@ -165,10 +165,10 @@ f %>%
 f <- DelayedFlights
 f %>%
   filter(DepTime>=600,DepTime<=1400,SecurityDelay>0) %>%
+  filter(SecurityDelay == max(SecurityDelay)) %>%
   select(Month,SecurityDelay) %>%
   group_by(Month) %>%
-  summarise(total_SecurityDelay = sum(SecurityDelay))%>%
-  top_n(1)
+  print
 
 ```
 
@@ -214,7 +214,7 @@ f%>%
     filter(is.na(ArrTime)==0,Diverted==1) %>%
     select(Diverted,FlightNum,DepTime,ArrTime)%>%
     mutate(elapsedtime=ArrTime-DepTime)%>%
-    select(FlightNum,elapsedtime)
+    select(FlightNum,elapsedtime,Diverted)
 rm(f)
 
 
